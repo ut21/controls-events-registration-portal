@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.contrib.auth.forms import UserCreationForm
-from .forms import RegisterUserForm, ClubForm
+from .forms import RegisterUserForm
 
 def login_user(request):
     if request.method == "POST":
@@ -15,8 +14,6 @@ def login_user(request):
         else:
             messages.success(request, ("There Was An Error Logging In, Try Again..."))	
             return redirect('login')	
-
-
     else:
         return render(request, 'register/login2.html', {})
     
@@ -35,26 +32,10 @@ def register_user(request):
             user = authenticate(username=username, password=password)
             login(request, user)
             messages.success(request, ("Registration Successful!"))
-            return redirect('add_club')
+            return redirect('add_event')
     else:
         form = RegisterUserForm()
 
     return render(request, 'register/register.html', {
         'form':form,
         })
-
-def add_club(request):
-    if request.method == "POST":
-        form = ClubForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('add_event')
-# return redirect('add_event')
-            # return render (request, 'events_portal/', {
-            #     "form": ClubForm(),
-            # })
-
-    
-    return render (request, 'events_portal/add_event_club.html', {
-        "form": ClubForm(),
-    })

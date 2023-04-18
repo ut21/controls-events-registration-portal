@@ -1,39 +1,38 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django import forms 
-from register.models import Club
-from django.forms import ModelForm
+from django import forms
+from phonenumber_field.formfields import PhoneNumberField
+from .models import Coordinator
 
 class RegisterUserForm(UserCreationForm):
-	email = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control'}))
-	first_name = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class':'form-control'}))
-	last_name = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class':'form-control'}))
-	club = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class':'form-control'}))
-	
-
-	class Meta:
-		model = User
-		fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
-
-
-	def __init__(self, *args, **kwargs):
-		super(RegisterUserForm, self).__init__(*args, **kwargs)
-
-		self.fields['username'].widget.attrs['class'] = 'form-control'
-		self.fields['password1'].widget.attrs['class'] = 'form-control'
-		self.fields['password2'].widget.attrs['class'] = 'form-control'
-		
-class ClubForm(ModelForm):
-    class Meta:
-        model = Club
-        fields = "__all__"
-    # club = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class':'form-control'}))
-    # coordinator = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class':'form-control'}))
-    # coordinator_number = forms.CharField(max_length=10, widget=forms.TextInput(attrs={'class':'form-control'}))
+    phone = PhoneNumberField()
+    club = forms.CharField(max_length=50,required=True)
+    username = forms.CharField(max_length=50,required=True)
+    first_name = forms.CharField(max_length=50,required=True)
+    last_name = forms.CharField(max_length=50,required=True)
+    email = forms.EmailField(max_length=50,required=True)
     
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
 
-    # def __init__(self, *args, **kwargs):
-    #     super(ClubForm, self).__init__(*args, **kwargs)
+    def save(self):
+        user = super().save()
+        club_name = self.cleaned_data.get('club')
+        phone = self.cleaned_data.get('phone')
+        coordinator = Coordinator(user=user, club=club_name, phone=phone)
+        coordinator.save()
+        return coordinator
+        
+    def __init__(self, *args, **kwargs):
+        super(RegisterUserForm, self).__init__(*args, **kwargs)
 
-    #     self.fields['Club'].widget.attrs['class'] = 'form-control'
-    #     self.fields['coordinator_number'].widget.attrs['class'] = 'form-control'
+        self.fields['username'].widget.attrs['class'] = 'form-control'
+        self.fields['password1'].widget.attrs['class'] = 'form-control'
+        self.fields['password2'].widget.attrs['class'] = 'form-control'
+        self.fields['first_name'].widget.attrs['class'] = 'form-control'
+        self.fields['last_name'].widget.attrs['class'] = 'form-control'
+        self.fields['email'].widget.attrs['class'] = 'form-control'
+        self.fields['club'].widget.attrs['class'] = 'form-control'
+        self.fields['phone'].widget.attrs['class'] = 'form-control'
+        

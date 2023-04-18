@@ -1,29 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-from register.models import Club
-
-# Create your models here.
-
-# class Coordinator(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     #club = models.ForeignKey('Club', on_delete=models.CASCADE, blank=True, null=True)
-#     club= models.ForeignKey('Club', on_delete=models.CASCADE, default=1)
-#     email = models.EmailField()
-#     phone = models.CharField(max_length=10)
-#     def __str__(self):
-#         return f"{self.user.username} | {self.user.email}"
-
-# class Club(models.Model):
-#     name = models.CharField(max_length=100)
-#     coordinator= models.OneToOneField(User, on_delete=models.CASCADE, related_name=)
-#     coordinator_number = models.CharField(max_length=10)
-
-#     def __str__(self):
-#         return f"club: {self.name} | coordinator: {self.coordinator}"
-    
-
 venue_choices = (('Online', 'Online'),
         ('Rotunda', 'Rotunda'),
         ('FD2 QT', 'FD2 QT'),
@@ -55,27 +32,4 @@ class Event(models.Model):
 
     def __str__(self):
         return self.name
-
-# class EventName(models.Model):
-#     name=models.CharField(max_length=100)
-#     is_event_happening_for_the_first_time = models.BooleanField(default=False)
-#     prize_money=models.IntegerField(default=0)
-#     kind_points=models.IntegerField(default=0)
-#     date = models.DateField()
-#     time=models.TimeField()
-#     club=Club.name
-
-# class EventReqs(models.Model):
-#     mics= models.IntegerField(default=0)
-#     projector = models.BooleanField(default=False)
-#     speakers = models.IntegerField(default=0)
-
-# class EventDescription(models.Model):
-#     description = models.TextField()
-#     registration_details=models.TextField(default="No registration criteria as such")
-
-# class EventLocation(models.Model):
-#     location_pref1 = models.CharField(max_length=100, choices=venue_choices, default='Online')
-#     location_pref2 = models.CharField(max_length=100, choices=venue_choices, default='Online')
-#     location_pref3 = models.CharField(max_length=100, choices=venue_choices, default='Online')
 
