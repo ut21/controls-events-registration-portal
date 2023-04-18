@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Event Name</title>
+</head>
+<body>
+    <header>
+        <h2>ADD EVENT REQUISITIONS</h2>
+        <div>
+            <a href="{% url 'register' %}">Register</a>
+            <a href="{% url 'logout' %}">Log Out</a>
+        </div>
+    </header>
+    
+    <form action="" method=POST>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+</html>

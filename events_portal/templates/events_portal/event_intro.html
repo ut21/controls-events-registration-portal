@@ -1,0 +1,116 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Event Name</title>
+</head>
+<body>
+    <header>
+        <h2>ADD EVENT NAME</h2>
+        <div>
+            <a href="{% url 'register' %}">Register</a>
+            <a href="{% url 'logout' %}">Log Out</a>
+        </div>
+    </header>
+    
+    <form action="" method=POST>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit">
+    </form>
+    
+    <a href="{% url 'add_event_desc' %}"> ADD EVENT DESCRIPTION </a>
+    <a href="{% url 'add_event_req' %}"> ADD EVENT REQUISITIONS </a>
+    <a href="{% url 'add_event_location' %}"> ADD EVENT LOCATION </a>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Event Name</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h2 {
+            margin: 0;
+            font-size: 28px;
+        }
+        header a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+        header a:hover {
+            text-decoration: underline;
+        }
+        form {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        form input[type="submit"] {
+            background-color: green;
+            color: #fff;
+            font-family: 'Helvetica', sans-serif;
+            font-size: 16px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        form input[type="submit"]:hover {
+            background-color: #3c3;
+        }
+        main {
+            margin: 20px;
+        }
+        main a {
+            display: inline-block;
+            margin-right: 10px;
+            padding: 10px;
+            background-color: #ccc;
+            color: #333;
+            border-radius: 5px;
+            text-decoration: none;
+            font-family: 'Helvetica', sans-serif;
+            font-size: 16px;
+        }
+        main a:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>ADD EVENT NAME</h2>
+        <div>
+            <a href="{% url 'register' %}">Register</a>
+            <a href="{% url 'logout' %}">Log Out</a>
+        </div>
+    </header>
+<form action="" method=POST>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
+</form>
+
+<main>
+    <a href="{% url 'add_event_desc' %}">ADD EVENT DESCRIPTION</a>
+    <a href="{% url 'add_event_req' %}">ADD EVENT REQUISITIONS</a>
+    <a href="{% url 'add_event_location' %}">ADD EVENT LOCATION</a>
+</main>
+</body>
+</html> 
