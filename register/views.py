@@ -1,7 +1,9 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import RegisterUserForm
+from events_portal.resources import CoordinatorResource
 
 def login_user(request):
     if request.method == "POST":
@@ -39,3 +41,11 @@ def register_user(request):
     return render(request, 'register/register.html', {
         'form':form,
         })
+
+
+def coordinators_excel(request):
+    coordinator_resource = CoordinatorResource()
+    dataset = coordinator_resource.export()
+    response = HttpResponse(dataset.xls, content_type='application/vnd.ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="coordinators.xls"'
+    return response

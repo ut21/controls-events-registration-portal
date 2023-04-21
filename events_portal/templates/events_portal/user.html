@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>My Project</title>
+        <title>add events</title>
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -72,6 +72,7 @@
     </head>
 
     <body>
+        {% if user.is_authenticated %}
         <header>
             <h2>ADD EVENT</h2>
             <div>
@@ -85,5 +86,8 @@
             {{ form.as_p }}
             <input type="submit" value="Submit">
         </form>
+        {% else %}
+        <h2 align="center">Sorry you must be <a href="{%url 'login' %}">Logged In</a> to add events</h2>
+        {% endif %}
     </body>
 </html>

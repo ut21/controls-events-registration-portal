@@ -13,10 +13,11 @@
 </style>
 <body>
     <h1 style: align="center"> EVENT DETAILS </h1>
+    <h2 style: align="center"> <a href="{%url 'add_event' %}">ADD ANOTHER EVENT</a> </h2>
     <div id="events">
     <ul>
-        {% for event in events %}
-            <h3> {{event.name}} </h3>
+        {% for event in events_user %}
+            <h3> {{ event.name }} </h3>
             <p> <div id="heading">EVENT DESCRIPTION: </div> <br>{{event.description}} </p><br>
 
         {% endfor %}

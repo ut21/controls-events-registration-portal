@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'phonenumbers'
+    'phonenumbers',
+    'import_export',
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True

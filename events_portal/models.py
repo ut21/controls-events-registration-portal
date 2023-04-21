@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from register.models import Coordinator
 
 venue_choices = (('Online', 'Online'),
         ('Rotunda', 'Rotunda'),
@@ -10,8 +10,7 @@ venue_choices = (('Online', 'Online'),
 
 
 class Event(models.Model):
-    author = models.OneToOneField(User, on_delete=models.CASCADE)
-    #club = models.ForeignKey(Club, on_delete=models.CASCADE, default=1)
+    author = models.ForeignKey(Coordinator, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     description = models.TextField()
     date = models.DateField()
@@ -28,7 +27,7 @@ class Event(models.Model):
     registration_details=models.TextField(default="No registration criteria as such")
     PrizeMoney=models.IntegerField(default=0)
     KindPoints=models.IntegerField(default=0)
-    #approved=models.BooleanField('Approved', default=False)
+    approved=models.BooleanField('Approved', default=False)
 
     def __str__(self):
         return self.name
