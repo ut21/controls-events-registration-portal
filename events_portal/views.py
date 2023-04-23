@@ -8,10 +8,18 @@ from .resources import EventResource, EventReqsResource, CoordinatorResource, Ev
 # Create your views here.
 
 
-
+def download(request):
+     return render (request, 'events_portal/download.html')
 
 def show_events(request):
     return render (request, 'events_portal/index.html', {
+        #'clubs': Club.objects.all(),
+        'events': Event.objects.all(),
+        'events_user': events_user
+    })
+
+def approved_events(request):
+    return render (request, 'events_portal/approved_events.html', {
         #'clubs': Club.objects.all(),
         'events': Event.objects.all(),
         'events_user': events_user

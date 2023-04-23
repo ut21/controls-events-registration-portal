@@ -12,4 +12,6 @@ urlpatterns = [
     path('events_judgesheets_excel/', views.events_judgesheets_excel, name='events_judgesheets_excel'),
     path('events_travels_excel/', views.events_travels_excel, name='events_travels_excel'),
     path('events_location_excel/', views.events_location_excel, name='events_location_excel'),
+    path('download/', views.download, name='download'),
+    path('approved_events/', views.approved_events, name='approved_events')
 ]

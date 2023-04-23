@@ -41,17 +41,16 @@
     </style>
 </head>
 <body>
-    <h1><a href="{%url 'approved_events' %}">Show Approved Events</a></h1>
-    <h1>YOUR EVENT DETAILS</h1>
+    <h1><a href="{%url 'show_events' %}">Show All Events</a></h1>
+    <h1>YOUR APPROVED EVENTS</h1>
     <h2><a href="{%url 'add_event' %}">ADD ANOTHER EVENT</a></h2>
     <div id="events">
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated and  event.approved %}
             <ul>
                 {% for event in events_user %}
                     <li>
                         <h3>{{ event.name }}</h3>
                         <p><span id="heading">EVENT DESCRIPTION:</span><br>{{event.description}}</p>
-                        <h3>Approved: {{event.approved}}</h3>
                     </li>
                 {% endfor %}
             </ul>

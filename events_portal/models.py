@@ -1,3 +1,4 @@
+import datetime
 from django.db import models
 from register.models import Coordinator
 
@@ -55,8 +56,8 @@ class Event(models.Model):
     travel_required = models.BooleanField(default=False)
     gender_of_judge = models.CharField(max_length=100, blank=True)
     travel_mode = models.CharField(max_length=100, blank=True)
-    travel_date = models.DateField(blank=True)
-    travel_time = models.TimeField(blank=True)
+    travel_date = models.DateField(blank=True, default=datetime.date.today)
+    travel_time = models.TimeField(blank=True, default=datetime.time(12, 00))
     departure_location = models.CharField(max_length=100, blank=True)
     arrival_location = models.CharField(max_length=100, blank=True)
     other_details = models.TextField(blank=True)

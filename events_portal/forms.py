@@ -8,7 +8,7 @@ class EventForm(ModelForm):
     class Meta:
         model = Event
         # fields = '__all__'
-        exclude = ('author', 'approved')
+        exclude = ('author', 'approved', 'final_location')
 
     def save(self, author):
         event = super(EventForm, self).save(commit=False)

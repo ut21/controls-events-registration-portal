@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Downloads</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333;
+            background-color: #f7f7f7;
+        }
+
+    h1 {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    a {
+        display: block;
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        text-decoration: none;
+        text-align: center;
+        color: #333;
+        background-color: #fff;
+    }
+
+    a:hover {
+        background-color: #f7f7f7;
+    }
+</style>
+</head>
+<body>
+    {% if user.is_superuser %}
+        <a href="/events_portal/events_csv">Download CSV of Events</a>
+        <a href="/events_portal/events_excel">Download Excel of Events</a>
+        <a href="/events_portal/events_reqs_excel">Download Excel of Events Reqs</a>
+        <a href="/events_portal/events_judgesheets_excel">Download Excel of Events Judgesheets</a>
+        <a href="/events_portal/events_travels_excel">Download Excel of Travels</a>
+        <a href="/events_portal/events_location_excel">Download Excel of Location</a>
+        <a href="/coordinator_excel">Download Details of Coordinators</a>
+    {% else %}
+        <h1>This Page is Accessible to Admins</h1>
+        <a href="/admin">Login if You're an Admin</a>
+    {% endif %}
+</body>
+</html>
