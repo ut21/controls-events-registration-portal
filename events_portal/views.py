@@ -2,10 +2,13 @@ import csv
 from django.http import HttpResponse
 from .models import Event
 from .forms import EventForm
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 import pandas as pd
-from .resources import EventResource
+from .resources import EventResource, EventReqsResource, CoordinatorResource, EventJudgesheetsResource, EventTravelsResource, EventLocationResource
 # Create your views here.
+
+
+
 
 def show_events(request):
     return render (request, 'events_portal/index.html', {
@@ -19,19 +22,13 @@ events_user = []
 def add_event(request):
     if request.method == 'POST':
         form = EventForm(request.POST)
-        print("PST request detected")
+        print("POST request detected")
         if form.is_valid():
-            # print("form is valids")
-            # getting cleaned data
-            # print("form is valids")
-            # name = form.cleaned_data['name']
             print(form.cleaned_data)
-            # exit()
             author = request.user.coordinator
             new_event = form.save(author)
             events_user.append(new_event)
             print(events_user)
-        # return redirect('after_adding_event')
         return render(request, 'events_portal/after_adding_event.html', {'new_event': new_event})
     else:
         form = EventForm()
@@ -69,3 +66,37 @@ def events_excel(request):
 	response['Content-Disposition'] = 'attachment; filename="events.xls"'
 	return response
 	
+def events_reqs_excel(request):
+    event_resource = EventReqsResource()
+    dataset = event_resource.export()
+    response = HttpResponse(dataset.xls, content_type='application/vnd.ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="events_reqs.xls"'
+    return response
+
+def coordinator_excel(request):
+    coordinator_resource = CoordinatorResource()
+    dataset = coordinator_resource.export()
+    response = HttpResponse(dataset.xls, content_type='application/vnd.ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="coordinator.xls"'
+    return response
+
+def events_judgesheets_excel(request):
+    event_resource = EventJudgesheetsResource()
+    dataset = event_resource.export()
+    response = HttpResponse(dataset.xls, content_type='application/vnd.ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="events_judgesheets.xls"'
+    return response
+
+def events_travels_excel(request):
+    event_resource = EventTravelsResource()
+    dataset = event_resource.export()
+    response = HttpResponse(dataset.xls, content_type='application/vnd.ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="events_travels.xls"'
+    return response
+
+def events_location_excel(request):
+    event_resource = EventLocationResource()
+    dataset = event_resource.export()
+    response = HttpResponse(dataset.xls, content_type='application/vnd.ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="events_location.xls"'
+    return response

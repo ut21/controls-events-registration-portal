@@ -5,6 +5,10 @@ from django.contrib import messages
 from .forms import RegisterUserForm
 from events_portal.resources import CoordinatorResource
 
+def home(request):
+    return render(request, 'register/home.html')
+     
+
 def login_user(request):
     if request.method == "POST":
         username = request.POST['username']
@@ -12,7 +16,7 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('add_event')
+            return redirect('show_events')
         else:
             messages.success(request, ("There Was An Error Logging In, Try Again..."))	
             return redirect('login')	

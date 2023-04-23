@@ -2,26 +2,58 @@
 <html lang="en">
 <head>
     <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f7f7f7;
+        }
+        #events {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        #heading {
+            font-weight: bold;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        h3 {
+            font-size: 24px;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+    </style>
 </head>
-<style>
-    #events {
-        font-family: Arial, Helvetica, sans-serif;
-    }
-    #heading {
-        font-weight: bold;
-    }
-</style>
 <body>
-    <h1 style: align="center"> EVENT DETAILS </h1>
-    <h2 style: align="center"> <a href="{%url 'add_event' %}">ADD ANOTHER EVENT</a> </h2>
+    <h1>YOUR EVENT DETAILS</h1>
+    <h2><a href="{%url 'add_event' %}">ADD ANOTHER EVENT</a></h2>
     <div id="events">
-    <ul>
-        {% for event in events_user %}
-            <h3> {{ event.name }} </h3>
-            <p> <div id="heading">EVENT DESCRIPTION: </div> <br>{{event.description}} </p><br>
-
-        {% endfor %}
-    </ul>
+        {% if user.is_authenticated %}
+            <ul>
+                {% for event in events_user %}
+                    <li>
+                        <h3>{{ event.name }}</h3>
+                        <p><span id="heading">EVENT DESCRIPTION:</span><br>{{event.description}}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
     </div>
 </body>
 </html>
