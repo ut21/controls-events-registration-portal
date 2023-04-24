@@ -51,7 +51,9 @@
                     <li>
                         <h3>{{ event.name }}</h3>
                         <p><span id="heading">EVENT DESCRIPTION:</span><br>{{event.description}}</p>
-                        <h3>Approved: {{event.approved}}</h3>
+                        <p><span id="heading">EVENT DATE:</span><br>{{event.date}}</p>
+                        <p><span id="heading">EVENT TIME:</span><br>{{event.time}}</p>
+                        <h3>Approval: {%if not event.approved%} Pending {%else%} Approved {% endif %}</h3>
                     </li>
                 {% endfor %}
             </ul>
