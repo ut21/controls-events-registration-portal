@@ -4,7 +4,7 @@ python -m venv env
 source ./env/bin/activate
 pip install -r requirements.txt
 ```
-<<<<<<< HEAD
+
 =======
 
 Functionalities:
@@ -18,4 +18,4 @@ To Add (The site is currently mainly proof of concept, adding these features, th
 2) Connect to Google Sheets API
 3) Add notifications and automated email sending
 4) Create jobstream wise models that inherit from the Event model and create seperate admins for them
->>>>>>> bd07db88c88cbcc4bd54a68c521f19df95ed8bb7
+>>>>>>> 
